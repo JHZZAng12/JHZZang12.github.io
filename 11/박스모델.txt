@@ -1,0 +1,10 @@
+박스모델 (2)
+padding 값을 정할때 위아래 옆이 다 값이 다르기에 4개로 나눠서 지정해줘야함 top right bottom left 순으로 
+
+
+
+
+content 빨강
+padding 회색
+border 굵은 선
+margin 컨테이너 
