@@ -1,0 +1,13 @@
+5주차 
+
+     JHZZang12.github.io/java/image/7_1_1_.jpg 함수 사용 예시  
+ JHZZang12.github.io/java/image/7_1_2_.jpg  더하기 예제 함수화
+JHZZang12.github.io/java/image/7_1_3_.jpg   더하기 예제 함수화(2)
+JHZZang12.github.io/java/image/7_1_4_.jpg 빼기 예제 함수화 
+JHZZang12.github.io/java/image/7_1_5_.jpg 빼기 예제 함수화  (2)
+JHZZang12.github.io/java/image/7_1_6_.jpg 곱하기 예제 함수화
+JHZZang12.github.io/java/image/7_1_7_.jpg 곱하기 예제 함수화 (2)
+JHZZang12.github.io/java/image/7_1_8_.jpg 4각형 면적 예제 함수화 여기 오류
+JHZZang12.github.io/java/image/7_1_9_.jpg 4각형 면적 예제 함수화 (2)
+JHZZang12.github.io/java/image/7_2_1_.jpg 3각형 면적 예제 함수화
+JHZZang12.github.io/java/image/7_2_2_.jpg 3각형 면적 예제 함수화(2)
