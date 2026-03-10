@@ -349,6 +349,88 @@
       gap: 16px;
     }
 
+    .feature-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 16px;
+    }
+
+    .feature-box {
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--line);
+    }
+
+    .feature-box strong {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(22, 22, 22, 0.46);
+    }
+
+    .feature-box h3 {
+      margin-top: 12px;
+      font-size: 32px;
+      line-height: 1.08;
+    }
+
+    .feature-box p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(16, 63, 59, 0.08);
+      color: var(--accent-strong);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+      color: var(--muted);
+    }
+
+    .feature-list li:first-child {
+      padding-top: 0;
+    }
+
+    .feature-list span {
+      color: rgba(22, 22, 22, 0.58);
+    }
+
+    .feature-list strong {
+      color: var(--text);
+      letter-spacing: normal;
+      text-transform: none;
+      font-size: 15px;
+    }
+
     .archive-card {
       padding: 22px;
       border-radius: 24px;
@@ -411,6 +493,7 @@
     @media (max-width: 980px) {
       .hero,
       .card-grid,
+      .feature-grid,
       .archive-grid,
       .stats {
         grid-template-columns: 1fr;
@@ -461,6 +544,7 @@
       </div>
       <nav class="nav" aria-label="주요 이동">
         <a href="#about">About</a>
+        <a href="#game">Game</a>
         <a href="#highlights">Highlights</a>
         <a href="#archive">Archive</a>
       </nav>
@@ -521,6 +605,53 @@
         <div class="stat panel">
           <strong>Legacy Access</strong>
           <span>Preserved</span>
+        </div>
+      </section>
+
+      <section class="section panel fade-up" id="game">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Featured Game</span>
+            <h2 style="margin-top: 16px; font-size: clamp(2.1rem, 4vw, 3.5rem);">IRON CITADEL</h2>
+          </div>
+          <p>
+            아까 만든 둠 스타일 FPS 프로토타입도 이 홈페이지 안에 연결했습니다.
+            외부 라이브러리 없이 <code>canvas</code>와 순수 JavaScript만으로 만든 브라우저 슈터입니다.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-box">
+            <strong>Brutal Pixel Prototype</strong>
+            <h3>브라우저에서 바로 플레이</h3>
+            <p>
+              좁은 복도를 돌파하면서 적을 정리하는 고속 레이캐스트 FPS입니다.
+              데스크톱은 포인터 잠금 기반 조작, 모바일은 터치 패드 조작을 지원합니다.
+            </p>
+            <div class="tag-list" aria-label="게임 특징">
+              <span class="tag">Canvas Raycasting</span>
+              <span class="tag">Vanilla JavaScript</span>
+              <span class="tag">Enemy AI</span>
+              <span class="tag">HUD / Minimap</span>
+              <span class="tag">Mobile Controls</span>
+            </div>
+            <div class="actions">
+              <a class="button button-primary" href="games/iron-citadel/">게임 플레이</a>
+              <a class="button button-secondary" href="games/iron-citadel/index.html">직접 열기</a>
+            </div>
+          </article>
+
+          <aside class="feature-box">
+            <strong>How To Play</strong>
+            <h3>조작과 목표</h3>
+            <ul class="feature-list">
+              <li><span>이동</span><strong>W A S D</strong></li>
+              <li><span>조준</span><strong>마우스 / ← →</strong></li>
+              <li><span>사격</span><strong>좌클릭 / Space</strong></li>
+              <li><span>질주</span><strong>Shift</strong></li>
+              <li><span>미션</span><strong>성채 내부 적 전멸</strong></li>
+            </ul>
+          </aside>
         </div>
       </section>
 
@@ -612,6 +743,7 @@
           <article class="archive-card">
             <span class="eyebrow">Media & Extras</span>
             <ul>
+              <li><a href="games/iron-citadel/">IRON CITADEL FPS</a></li>
               <li><a href="audio/1.html">오디오 실습</a></li>
               <li><a href="video/1.html">비디오 실습</a></li>
               <li><a href="imap/1.html">이미지 맵 실습</a></li>

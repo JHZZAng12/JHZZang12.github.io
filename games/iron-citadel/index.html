@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRON CITADEL</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <canvas id="gameCanvas" aria-label="둠 스타일 FPS 게임 화면"></canvas>
+
+  <div id="chrome">
+    <header id="hud">
+      <div class="hud-card">
+        <span class="hud-label">HEALTH</span>
+        <strong id="healthValue">100</strong>
+      </div>
+      <div class="hud-card">
+        <span class="hud-label">AMMO</span>
+        <strong id="ammoValue">24</strong>
+      </div>
+      <div class="hud-card">
+        <span class="hud-label">KILLS</span>
+        <strong id="killsValue">0 / 0</strong>
+      </div>
+    </header>
+
+    <aside id="objectivePanel">
+      <div class="objective-title">MISSION</div>
+      <div id="objectiveText">성채 내부 악마 병력을 모두 제거하십시오.</div>
+    </aside>
+
+    <div id="messageBar">포인터를 잠그고 지옥문을 돌파하십시오.</div>
+    <div id="reticle" aria-hidden="true"></div>
+    <div id="damageVignette" aria-hidden="true"></div>
+    <div id="scanlines" aria-hidden="true"></div>
+  </div>
+
+  <div id="overlay" class="visible">
+    <div class="overlay-panel">
+      <p class="eyebrow">BRUTAL PIXEL PROTOTYPE</p>
+      <h1>IRON CITADEL</h1>
+      <p class="overlay-copy">
+        둠 감성의 고속 레이캐스트 FPS입니다. 좁은 복도를 돌파하면서 적을 쓸어버리십시오.
+      </p>
+      <div class="controls-grid">
+        <div><span>이동</span><strong>W A S D</strong></div>
+        <div><span>조준</span><strong>마우스 / ← →</strong></div>
+        <div><span>사격</span><strong>클릭 / Space</strong></div>
+        <div><span>질주</span><strong>Shift</strong></div>
+      </div>
+      <button id="startButton" type="button">전투 시작</button>
+    </div>
+  </div>
+
+  <div id="mobileControls" aria-hidden="true">
+    <div id="movePad" class="touch-pad">
+      <span>MOVE</span>
+      <div class="touch-knob" id="moveKnob"></div>
+    </div>
+    <div id="lookPad" class="touch-pad">
+      <span>LOOK</span>
+      <div class="touch-knob" id="lookKnob"></div>
+    </div>
+    <button id="fireButton" type="button">FIRE</button>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>
