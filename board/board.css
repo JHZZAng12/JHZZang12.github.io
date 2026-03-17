@@ -10,7 +10,7 @@
   --pine-soft: #236057;
   --amber: #b25a2b;
   --rose: #f6d8c4;
-  --shadow: 0 24px 60px rgba(45, 28, 14, 0.12);
+  --shadow: 0 12px 28px rgba(45, 28, 14, 0.08);
 }
 
 * {
@@ -49,30 +49,7 @@ button {
 }
 
 .aurora {
-  position: fixed;
-  inset: auto;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(30px);
-  opacity: 0.8;
-}
-
-.aurora-a {
-  top: 72px;
-  right: -30px;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background: rgba(35, 96, 87, 0.18);
-}
-
-.aurora-b {
-  bottom: 56px;
-  left: -20px;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: rgba(178, 90, 43, 0.14);
+  display: none;
 }
 
 .shell {
@@ -88,7 +65,6 @@ button {
   border: 1px solid var(--line);
   background: linear-gradient(180deg, var(--panel-strong) 0%, var(--panel) 100%);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
 }
 
 .topbar {
@@ -148,6 +124,8 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.84fr);
   gap: 18px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 560px;
 }
 
 .panel {
@@ -321,6 +299,8 @@ h2 {
   display: grid;
   grid-template-columns: minmax(320px, 0.88fr) minmax(0, 1.12fr);
   gap: 18px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1200px;
 }
 
 .composer,
@@ -442,6 +422,7 @@ form {
   display: grid;
   gap: 14px;
   padding: 12px 28px 28px;
+  contain: layout paint;
 }
 
 .post-card {
@@ -450,6 +431,8 @@ form {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(26, 23, 19, 0.08);
   transition: transform 0.22s ease, border-color 0.22s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 180px;
 }
 
 .post-card:hover {
@@ -490,6 +473,11 @@ form {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-top: 24px;
+}
+
+.setup {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 320px;
 }
 
 .setup-grid article {
