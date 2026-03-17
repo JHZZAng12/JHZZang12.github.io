@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JHZZang12 Board</title>
+  <meta
+    name="description"
+    content="Supabase에 연결된 JHZZang12의 미니 게시판. 글 작성과 목록 조회를 GitHub Pages에서 바로 처리합니다."
+  >
+  <link rel="stylesheet" href="board.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script defer src="board.js"></script>
+</head>
+<body>
+  <div class="aurora aurora-a" aria-hidden="true"></div>
+  <div class="aurora aurora-b" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark"></span>
+        JHZZang12.github.io
+      </a>
+
+      <nav class="topnav" aria-label="게시판 이동">
+        <a href="../index.html">메인으로</a>
+        <a href="#write">글쓰기</a>
+        <a href="#feed">최근 글</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy panel">
+          <p class="eyebrow">Supabase Connected Board</p>
+          <h1>한 줄 방명록보다<br>조금 더 길게 남기는 게시판</h1>
+          <p class="lead">
+            GitHub Pages 위에 올린 정적 사이트지만, 글은 Supabase에 직접 저장됩니다.
+            이름, 제목, 내용을 남기면 아래 피드에 바로 쌓이는 단순하고 빠른 게시판입니다.
+          </p>
+
+          <div class="hero-actions">
+            <a class="pill pill-primary" href="#write">게시글 작성하기</a>
+            <button class="pill pill-secondary" id="refreshButton" type="button">목록 새로고침</button>
+          </div>
+        </div>
+
+        <aside class="status-card panel">
+          <div class="status-head">
+            <p class="eyebrow">Live Status</p>
+            <span class="connection-badge" id="connectionBadge" data-state="loading">연결 확인 중</span>
+          </div>
+
+          <div class="status-grid">
+            <article>
+              <span>총 게시글</span>
+              <strong id="postCount">-</strong>
+            </article>
+            <article>
+              <span>최근 작성자</span>
+              <strong id="latestAuthor">-</strong>
+            </article>
+            <article>
+              <span>최근 등록</span>
+              <strong id="latestTime">-</strong>
+            </article>
+          </div>
+
+          <div class="stack-note">
+            <p>Project URL</p>
+            <strong>caasgbvgoscqqtrlxjxo.supabase.co</strong>
+          </div>
+          <div class="stack-note">
+            <p>Table</p>
+            <strong>public.board_posts</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="board-grid">
+        <section class="composer panel" id="write">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Write</p>
+              <h2>새 글 남기기</h2>
+            </div>
+            <p class="panel-copy">닉네임은 브라우저에 기억해둡니다. 같은 기기에서 다시 열면 자동으로 채워집니다.</p>
+          </div>
+
+          <form id="postForm" novalidate>
+            <label class="field">
+              <span>닉네임</span>
+              <input id="authorInput" name="author" type="text" maxlength="24" placeholder="예: 나준희" required>
+            </label>
+
+            <label class="field">
+              <span>제목</span>
+              <input id="titleInput" name="title" type="text" maxlength="80" placeholder="제목을 입력하세요" required>
+            </label>
+
+            <label class="field">
+              <span>내용</span>
+              <textarea
+                id="contentInput"
+                name="content"
+                rows="9"
+                maxlength="2000"
+                placeholder="게시판에 남길 내용을 적어주세요"
+                required
+              ></textarea>
+            </label>
+
+            <div class="form-row">
+              <span class="counter" id="contentCounter">0 / 2000</span>
+              <button class="submit-button" id="submitButton" type="submit">게시하기</button>
+            </div>
+
+            <p class="message" id="formMessage" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="feed panel" id="feed">
+          <div class="panel-head feed-head">
+            <div>
+              <p class="eyebrow">Feed</p>
+              <h2>최근 등록된 글</h2>
+            </div>
+
+            <label class="search-wrap" for="searchInput">
+              <span class="visually-hidden">게시글 검색</span>
+              <input id="searchInput" type="search" placeholder="제목, 작성자, 내용 검색">
+            </label>
+          </div>
+
+          <p class="board-message" id="boardMessage" aria-live="polite">게시글을 불러오는 중입니다.</p>
+          <div class="post-list" id="postList"></div>
+        </section>
+      </section>
+
+      <section class="setup panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Supabase Setup</p>
+            <h2>처음 한 번만 필요한 테이블 준비</h2>
+          </div>
+          <p class="panel-copy">
+            아직 테이블을 만들지 않았다면 Supabase SQL Editor에서
+            <code>supabase/board_posts.sql</code> 내용을 실행하면 됩니다.
+          </p>
+        </div>
+
+        <div class="setup-grid">
+          <article>
+            <strong>1. SQL 실행</strong>
+            <p><code>supabase/board_posts.sql</code> 파일을 Supabase SQL Editor에 붙여 넣고 실행합니다.</p>
+          </article>
+          <article>
+            <strong>2. 정책 확인</strong>
+            <p>익명 사용자도 읽기와 쓰기가 가능하도록 RLS 정책이 같이 생성됩니다.</p>
+          </article>
+          <article>
+            <strong>3. 배포 반영</strong>
+            <p>이 저장소를 GitHub Pages에 푸시하면 별도 서버 없이 게시판이 바로 열립니다.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
