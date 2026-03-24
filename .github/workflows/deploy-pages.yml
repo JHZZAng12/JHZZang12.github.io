@@ -41,6 +41,28 @@ jobs:
           });
           EOF
 
+      - name: Write deploy summary
+        env:
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+        run: |
+          owner="${REPOSITORY_OWNER,,}"
+          repo="$REPOSITORY_NAME"
+
+          if [ "$repo" = "${owner}.github.io" ]; then
+            site_url="https://${owner}.github.io"
+          else
+            site_url="https://${owner}.github.io/${repo}"
+          fi
+
+          {
+            echo "### GitHub Pages deploy target"
+            echo
+            echo "- Site: ${site_url}"
+            echo "- Board: ${site_url}/board/"
+            echo "- Required environment secrets: PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

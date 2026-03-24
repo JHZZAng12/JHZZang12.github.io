@@ -238,6 +238,17 @@ h2 {
   white-space: nowrap;
 }
 
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .connection-badge[data-state="loading"] {
   background: rgba(178, 90, 43, 0.12);
   color: #7c3715;
@@ -249,6 +260,26 @@ h2 {
 }
 
 .connection-badge[data-state="error"] {
+  background: rgba(166, 45, 45, 0.12);
+  color: #8a1d1d;
+}
+
+.auth-badge[data-state="loading"] {
+  background: rgba(178, 90, 43, 0.12);
+  color: #7c3715;
+}
+
+.auth-badge[data-state="authenticated"] {
+  background: rgba(35, 96, 87, 0.12);
+  color: var(--pine);
+}
+
+.auth-badge[data-state="signed-out"] {
+  background: rgba(26, 23, 19, 0.08);
+  color: var(--ink);
+}
+
+.auth-badge[data-state="error"] {
   background: rgba(166, 45, 45, 0.12);
   color: #8a1d1d;
 }
@@ -303,9 +334,20 @@ h2 {
   contain-intrinsic-size: 1px 1200px;
 }
 
+.board-side {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.auth,
 .composer,
 .feed {
   padding: 0;
+}
+
+.auth-head {
+  align-items: center;
 }
 
 .panel-head {
@@ -333,6 +375,44 @@ form {
   padding: 24px 28px 28px;
 }
 
+.auth-form {
+  padding-bottom: 20px;
+}
+
+.mode-switch {
+  display: inline-flex;
+  width: 100%;
+  padding: 6px;
+  border-radius: 20px;
+  background: rgba(26, 23, 19, 0.06);
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.mode-button {
+  flex: 1;
+  min-height: 46px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.mode-button:hover,
+.mode-button:focus-visible {
+  outline: none;
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.mode-button.is-active {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
+  box-shadow: 0 8px 16px rgba(26, 23, 19, 0.08);
+}
+
 .field {
   display: grid;
   gap: 10px;
@@ -345,6 +425,13 @@ form {
 .field span {
   font-size: 14px;
   font-weight: 700;
+}
+
+.field-help {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .field input,
@@ -387,6 +474,10 @@ form {
   font-size: 14px;
 }
 
+.auth-row {
+  margin-top: 20px;
+}
+
 .message,
 .board-message {
   margin: 16px 0 0;
@@ -406,6 +497,63 @@ form {
 
 .feed-head {
   align-items: center;
+}
+
+.session-card {
+  margin: 0 28px 28px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(26, 23, 19, 0.08);
+}
+
+.session-card h3 {
+  margin: 12px 0 0;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  line-height: 1.15;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.session-copy {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.session-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.session-meta article {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(26, 23, 19, 0.08);
+}
+
+.session-meta span {
+  display: block;
+  margin: 0;
+  color: rgba(26, 23, 19, 0.5);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.session-meta strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.signout-button {
+  margin-top: 18px;
+  min-width: 140px;
 }
 
 .search-wrap {
@@ -470,7 +618,7 @@ form {
 
 .setup-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
   margin-top: 24px;
 }
@@ -553,6 +701,10 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .session-meta {
+    grid-template-columns: 1fr;
+  }
+
   .form-row {
     align-items: start;
     flex-direction: column;
@@ -565,6 +717,7 @@ code {
   .panel,
   form,
   .panel-head,
+  .session-card,
   .feed .board-message,
   .post-list {
     padding-left: 20px;
@@ -573,5 +726,10 @@ code {
 
   .post-card {
     padding: 18px;
+  }
+
+  .session-card {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
